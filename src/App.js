@@ -14,7 +14,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React - GRUPO 14 GO GO
         </a>
       </header>
     </div>
