@@ -1,7 +1,7 @@
 import React from 'react';
 import { getCategories } from '../services/api';
 
-class ProductsList extends React.Component {
+class CategoriesList extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -21,13 +21,25 @@ class ProductsList extends React.Component {
     }
 
     render() {
+      const { handleEspecifyCategories } = this.props;
       const { products } = this.state;
       return (
         <div>
           <h2>Categorias:</h2>
           <ul>
             {products.map(({ id, name }) => (
-              <li key={ id } data-testid="category">{ name }</li>
+              <div style={ { display: 'flex' } } key={ id }>
+                <input
+                  data-testid="category"
+                  type="checkbox"
+                  onClick={ () => handleEspecifyCategories(id) }
+                />
+                <li
+                  style={ { listStyleType: 'none' } }
+                >
+                  { name }
+                </li>
+              </div>
             ))}
           </ul>
         </div>
@@ -35,4 +47,4 @@ class ProductsList extends React.Component {
     }
 }
 
-export default ProductsList;
+export default CategoriesList;

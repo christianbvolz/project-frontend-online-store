@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CardProducts from '../components/CardProducts';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductsList from './productsList';
+import CategoriesList from '../components/CategoriesList';
 
 export default class Home extends Component {
   constructor() {
@@ -13,6 +13,7 @@ export default class Home extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFetchApi = this.handleFetchApi.bind(this);
+    this.handleEspecifyCategories = this.handleEspecifyCategories.bind(this);
   }
 
   handleChange({ target: { value, name } }) {
@@ -26,6 +27,16 @@ export default class Home extends Component {
     const queries = await getProductsFromCategoryAndQuery(false, search);
     const { results } = queries;
     this.setState({ products: results });
+  }
+
+  async handleEspecifyCategories(id) {
+    const { search } = this.state;
+    const { results } = await getProductsFromCategoryAndQuery(id, search);
+    console.log('chamada', results);
+    console.log('antes', this.state.products);
+    this.setState({ products: results });
+    console.log('depois', this.state.products);
+    console.log('estado', results);
   }
 
   // async handleFetchApi() {
@@ -80,8 +91,10 @@ export default class Home extends Component {
         >
           <button type="button">Carrinho</button>
         </Link>
-        { products && this.renderProducts(products) }
-        <ProductsList />
+        <div style={ { display: 'flex' } }>
+          <CategoriesList handleEspecifyCategories={ this.handleEspecifyCategories } />
+          { products && this.renderProducts(products) }
+        </div>
       </div>
     );
   }
