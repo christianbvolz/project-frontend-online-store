@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CardProducts from '../components/CardProducts';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import ProductsList from './productsList';
 
 export default class Home extends Component {
   constructor() {
@@ -80,6 +81,7 @@ export default class Home extends Component {
           <button type="button">Carrinho</button>
         </Link>
         { products && this.renderProducts(products) }
+        <ProductsList />
       </div>
     );
   }
