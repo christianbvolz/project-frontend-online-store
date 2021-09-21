@@ -32,31 +32,8 @@ export default class Home extends Component {
   async handleEspecifyCategories(id) {
     const { search } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(id, search);
-    console.log('chamada', results);
-    console.log('antes', this.state.products);
     this.setState({ products: results });
-    console.log('depois', this.state.products);
-    console.log('estado', results);
   }
-
-  // async handleFetchApi() {
-  //   const { search } = this.state;
-  //   const categories = await getCategories(search);
-  //   const categoriesFiltered = categories.find(({ name }) => {
-  //     const nameLower = name.toLowerCase();
-  //     const seacherLower = search.toLowerCase();
-  //     return nameLower.includes(seacherLower);
-  //   });
-  //   if (categoriesFiltered) {
-  //     const { id } = categoriesFiltered;
-  //     const products = await getProductsFromCategoryAndQuery(id, search);
-  //     this.setState({
-  //       products: products.results,
-  //     });
-  //   } else {
-  //     this.setState({ products: [] });
-  //   }
-  // }
 
   renderProducts(products) {
     if (products.length !== 0) {
