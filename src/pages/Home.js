@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ProductsList from './productsList';
 
 export default class Home extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class Home extends Component {
         >
           <button type="button">Carrinho</button>
         </Link>
+        <ProductsList />
       </div>
     );
   }
