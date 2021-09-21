@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CardProducts from '../components/CardProducts';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductsList from './productsList';
+import CategoriesList from '../components/CategoriesList';
 
 export default class Home extends Component {
   constructor() {
@@ -13,6 +13,7 @@ export default class Home extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFetchApi = this.handleFetchApi.bind(this);
+    this.handleEspecifyCategories = this.handleEspecifyCategories.bind(this);
   }
 
   handleChange({ target: { value, name } }) {
@@ -28,24 +29,11 @@ export default class Home extends Component {
     this.setState({ products: results });
   }
 
-  // async handleFetchApi() {
-  //   const { search } = this.state;
-  //   const categories = await getCategories(search);
-  //   const categoriesFiltered = categories.find(({ name }) => {
-  //     const nameLower = name.toLowerCase();
-  //     const seacherLower = search.toLowerCase();
-  //     return nameLower.includes(seacherLower);
-  //   });
-  //   if (categoriesFiltered) {
-  //     const { id } = categoriesFiltered;
-  //     const products = await getProductsFromCategoryAndQuery(id, search);
-  //     this.setState({
-  //       products: products.results,
-  //     });
-  //   } else {
-  //     this.setState({ products: [] });
-  //   }
-  // }
+  async handleEspecifyCategories(id) {
+    const { search } = this.state;
+    const { results } = await getProductsFromCategoryAndQuery(id, search);
+    this.setState({ products: results });
+  }
 
   renderProducts(products) {
     if (products.length !== 0) {
@@ -80,8 +68,10 @@ export default class Home extends Component {
         >
           <button type="button">Carrinho</button>
         </Link>
-        { products && this.renderProducts(products) }
-        <ProductsList />
+        <div style={ { display: 'flex' } }>
+          <CategoriesList handleEspecifyCategories={ this.handleEspecifyCategories } />
+          { products && this.renderProducts(products) }
+        </div>
       </div>
     );
   }

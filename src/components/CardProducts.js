@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class CardProducts extends Component {
   render() {
@@ -19,3 +20,7 @@ export default class CardProducts extends Component {
     );
   }
 }
+
+CardProducts.propTypes = {
+  products: PropTypes.oneOfType([PropTypes.array, PropTypes.any]).isRequired,
+};
