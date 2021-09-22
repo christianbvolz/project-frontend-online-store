@@ -25,14 +25,6 @@ export default class CardProducts extends Component {
     }
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
-    // const check = JSON.parse(localStorage.getItem(product.id));
-    // console.log(check);
-    // if (check) {
-    //   Object.assign(product, { quantity: check.quantity + 1 });
-    // } else {
-    //   Object.assign(product, { quantity: 1 });
-    // }
-    // localStorage.setItem(product.id, JSON.stringify(product));
   }
 
   render() {
