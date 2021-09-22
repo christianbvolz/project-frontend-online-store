@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RatingForm from './RatingForm';
 
 export default class ProductDetails extends Component {
   constructor() {
@@ -27,13 +28,18 @@ export default class ProductDetails extends Component {
       const { product: { title, thumbnail, price } } = this.state;
       return (
         <div>
-          <p data-testid="product-detail-name">
-            {' '}
-            { title }
-            {' '}
-          </p>
-          <img src={ thumbnail } alt={ title } />
-          <p>{ price }</p>
+          <div>
+            <p data-testid="product-detail-name">
+              {' '}
+              { title }
+              {' '}
+            </p>
+            <img src={ thumbnail } alt={ title } />
+            <p>{ price }</p>
+          </div>
+          <div>
+            <RatingForm />
+          </div>
         </div>
       );
     }
